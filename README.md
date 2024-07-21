@@ -5,4 +5,9 @@ Make sure you install the dependencies using the following command
 ```pip install -r requirements.txt```
 
 ## Functionalities
-So with this project I used a <placeholder> database to hold the emails of well over 200+ members. We would then pipe the emails into the email client through querying, and then asynchronously push all the emails to the recipients' accounts. Other than that, I have created a FastAPI backend just for the sake of having one. Not entirely sure if I will implement a front end, prob will. I will also look into scraping the csv file to pull email data and push to firebase.
+So with this project I used a Firebase database to hold the emails of well over 200+ members. This will be scraped from our xlsx file that we place as an input. We would then pipe the emails into the email client through querying, and then using smtp connection to the google server, we will push all the emails to the recipients' accounts. Other than that, I intend to create a FastAPI backend just for the sake of having one. Not entirely sure if I will implement a front end, prob will. 
+
+## To Do List
+- [ ] Implement routes
+- [ ] Implement input system for csv file
+- [ ] Implement scheduling for emails
