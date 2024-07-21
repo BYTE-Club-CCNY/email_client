@@ -1,9 +1,12 @@
 from socket import *
 from smtplib import SMTP_SSL
+from dotenv import load_dotenv
+import os
+load_dotenv()
 mailserver= "smtp.gmail.com" #server host we will be using
 serverPort=465 #port the socket uses (think of localhost:5000 when deploying a webapp)
-username=input('Enter your email:\n') #note it only works on my email lol
-password='zzoj ipci intn twat' #this is the app password, you will have to go to your google account -> security ->2fa -> app passwords to set this up
+username='acmbyte.ccny@gmail.com' 
+password= os.getenv('app_password')#this is the app password, you will have to go to your google account -> security ->2fa -> app passwords to set this up
 message_body=input('Enter message:\n')
 header= 'Subject: ' + input('Enter subject:\n')
 message=f"{header}\n\n{message_body}"
