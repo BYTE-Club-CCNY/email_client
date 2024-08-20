@@ -8,3 +8,4 @@
 - [ ] add entry point to access database and get emails of all active cabinent
 - [ ] add database table for cabinet members 
 - [ ] expand server to send selective emails
+- [ ] creat git hook to update req.txt whenever env changes
