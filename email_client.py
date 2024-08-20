@@ -25,7 +25,7 @@ class Email_Client:
             try:
                 server.ehlo()
                 server.login(self.username, self.password)
-                server.sendmail(self.username, self.recipient, self.message)
+                server.sendmail(self.username, self.to, self.message)
                 server.quit()
                 print("Email Sent")
             except Exception as e:

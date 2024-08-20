@@ -21,7 +21,7 @@ def hello_world(message: str, subject: str, cc: list[str] = None):
 
     load_dotenv()
 
-    username = os.getenv("email")
+    username = os.getenv("username")
     password = os.getenv("password")
     message = f"{subject}\n\n{message}"
     to = ["fahadfaruqi1@gmail.com"]
