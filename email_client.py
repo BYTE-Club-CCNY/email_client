@@ -14,7 +14,13 @@ class Email_Client:
         self.password = password
         self.message = "Subject: {}\n\n{}".format(subject, message)
         self.to = to
-        self.cc = cc
+        self.cc = cc  # should always include all active cabinet members
+
+    def add_to(self, to: str | list[str]):
+        if isinstance(to, str):
+            self.to.append(to)
+        else:
+            self.to.append(*to)
 
     # will open an smpt server
     def email(self):
