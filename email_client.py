@@ -8,13 +8,13 @@ class Email_Client:
         to: list[str],
         cc: list[str] = None,
     ):
-        self.mailserver = "smtp.gmail.com"  # server host we will be using
+        self.mailserver = "smtp.gmail.com"
         self.serverPort = 465
         self.username = username
         self.password = password
         self.message = "Subject: {}\n\n{}".format(subject, message)
         self.to = to
-        self.cc = cc  # should always include all active cabinet members
+        self.cc = cc
 
     def add_to(self, to: str | list[str]):
         if isinstance(to, str):
