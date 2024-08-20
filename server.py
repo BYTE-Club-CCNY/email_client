@@ -28,7 +28,7 @@ def hello_world(message: str, subject: str, cc: list[str] = None):
 
     try:
         e = Email_Client(username, password, message, subject, to)
-        e.email()  # should return some result from email server
+        e.email()
         return True
     except Exception as e:
         error_string = f"Error!: {str(e)}"
