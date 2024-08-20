@@ -4,11 +4,18 @@ import os
 
 if __name__ == "__main__":
     load_dotenv()
-    username = "acmbyte.ccny@gmail.com"
-    password = os.getenv("app_password")
-    message_body = ""  # read from some file
-    subject = ""  # read from some file
+    username = os.getenv("username")
+    password = os.getenv("password")
+
+    if not username or not password:
+        print("username or password not found")
+        print(f"Username: {username} \nPassword: {password}")
+        exit(1)
+
+    message_body = "hiiiiii"  # read from some file
+    subject = "hi"  # read from some file
     message = f"{subject}\n\n{message_body}"
     to = ["fahadfaruqi1@gmail.com"]
 
     e = Email_Client(username, password, message, subject, to)
+    e.email()
