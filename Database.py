@@ -58,8 +58,22 @@ class Database:
             return e
 
     def get(self, person: Person = None, select_blacklist: bool = False):
-        # get info on a specific person (can have majority None fields), otherwise on all
-        return None
+        if not person:
+            if not select_blacklist:
+                query = self.queries.select_all_no_blacklist
+            else:
+                query = self.queries.select_all
+            values = []
+
+            try:
+                res = self.execute_query(query, values)
+                return res
+            except Exception as e:
+                print("Exception Occured", e)
+                return None
+        else:
+            # build query based on what values are avaiable
+            return None
 
     def add_cabinet(self, person: Person):
         query = self.queries.add_cabinet
