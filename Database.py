@@ -1,3 +1,6 @@
+""" establishes connection to database and prefroms actions based on person objects """
+
+
 class Database:
     from Person import Person
 
