@@ -72,8 +72,31 @@ class Database:
                 print("Exception Occured", e)
                 return None
         else:
+            query = self.queries.select_all
+            # if UID present, that trumps all
+            if person.uid:
+                try:
+                    query += " WHERE UID = (%s)"
+                    values = person.uid
+                    res = self.execute_query(query, values)
+                    return res
+                except Exception as e:
+                    print("exception occured", e)
+                    return None
+
             # build query based on what values are avaiable
-            return None
+            # iterate over all public fields in the class and construct a LIKE % % query for them
+            # person object must not contain methods
+            fields = [a for a in dir(person) if not a.startswith("__")]
+            query += " WHERE"
+            for field in fields:
+                query += f" {field} LIKE %{getattr(person, field)}%,\n"
+
+            try:
+                return self.execute_query(query, [])
+            except Exception as e:
+                print("Exception Occured", e)
+                return None
 
     def add_cabinet(self, person: Person):
         query = self.queries.add_cabinet
