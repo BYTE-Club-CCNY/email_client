@@ -9,4 +9,5 @@ class pgQueries:
                                 WHERE uid IN (SELECT uid FROM cabinet);
                                 """
         self.select_all = """ SELECT * FROM PEOPLE """
-        self.add_cabinet = """ INSERT INTO cabinet (uid) VALUES (%s)"""
+        self.add_cabinet = """ INSERT INTO cabinet (uid) VALUES (%s) """
+        self.add_blacklist = """ INSERT INTO blacklist (uid) VALUES (%s) """

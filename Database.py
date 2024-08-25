@@ -67,7 +67,6 @@ class Database:
         query = self.queries.select_cabinet
         try:
             res = self.execute_query(query, ())
-            print(res)
             return res
         except Exception as e:
             print("Exception occured:", e)
@@ -77,11 +76,20 @@ class Database:
         query = self.queries.select_blacklist
         try:
             res = self.execute_query(query, ())
-            print(res)
             return res
         except Exception as e:
             print("Exception occured:", e)
             return None
 
-    def add_blacklist(self):
+    def add_blacklist(self, person: Person):
+        query = self.queries.add_blacklist
+        values = person.uid
+
+        try:
+            res = self.execute_query(query, values)
+            return res
+        except Exception as e:
+            print("Exception occured:", e)
+            return None
+
         return None
