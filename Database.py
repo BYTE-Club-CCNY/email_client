@@ -44,9 +44,18 @@ class Database:
         # method to add a person int our database
         return None
 
-    def remove(self, person: Person):
-        # method to remove person from database
-        return None
+    def remove(self, person: list[Person]):
+        query = self.queries.delete_person
+
+        values = []
+        for p in person:
+            values.append(p.uid)
+
+        try:
+            self.execute_query(query, values)
+            return True
+        except Exception as e:
+            return e
 
     def get(self, person: Person = None, select_blacklist: bool = False):
         # get info on a specific person (can have majority None fields), otherwise on all
