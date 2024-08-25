@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS people (
-    uid UUID NOT NULL DEFAULT uuid_generate_v4(),
+    uid UUID NOT NULL DEFAULT PRIMARY KEY uuid_generate_v4(),
     active boolean NOT NULL DEFAULT true,
     first_name VARCHAR(250) NOT NULL ,
     middle_name VARCHAR(250) ,
