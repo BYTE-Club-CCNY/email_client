@@ -14,3 +14,6 @@ class pgQueries:
         self.add_cabinet = """ INSERT INTO cabinet (uid) VALUES (%s) """
         self.add_blacklist = """ INSERT INTO blacklist (uid) VALUES (%s) """
         self.delete_person = """ DELETE FROM people WHERE uid = (%s) """
+        self.add_person = """ INSERT INTO people (first_name, middle_name, last_name, 
+                                personal_email, cuny_email, preferred_email, discord, emplid)
+                                VALUES (%s, %s, %s, %s, %s, %s, %s, %s) """

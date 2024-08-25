@@ -41,8 +41,22 @@ class Database:
         return res
 
     def add(self, person: Person):
-        # method to add a person int our database
-        return None
+        try:
+            query = self.queries.add_person
+            values = [
+                person.first_name,
+                person.middle_name,
+                person.last_name,
+                person.personal_email,
+                person.cuny_email,
+                person.preferred_email,
+                person.discord,
+                person.emplid,
+            ]
+            return self.execute_query(query, values)
+        except Exception as e:
+            print("Exception Occurred", e)
+            return None
 
     def remove(self, person: list[Person]):
         query = self.queries.delete_person
