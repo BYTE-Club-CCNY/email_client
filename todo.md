@@ -1,5 +1,4 @@
 # TODO
-- [ ] add a github workflow to update pip when sys env changes 
 - [ ] explore writing in a compiled language (faster)
 - [x] abstract code into multiple files
 - [x] add classes
@@ -7,6 +6,6 @@
 - [ ] (thoughts) send emails in isolation? i.e. users do not see who else got an email
 - [x] add database table for cabinet members 
 - [ ] expand server to send selective emails
-- [ ] creat git hook to update req.txt whenever env changes
+- [x] creat git hook to update req.txt whenever env changes
 - [ ] refactor email_client to allow for null body 
 - [ ] Database.get should only return preferred email
