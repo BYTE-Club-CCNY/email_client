@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS blacklist(
+    uid UUID PRIMARY KEY
+)
