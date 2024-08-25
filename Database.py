@@ -12,7 +12,7 @@ class Database:
 
         load_dotenv()
 
-        res = []
+        res = None
 
         db_name = os.getenv("POSTGRESQL_DB")
         db_user = os.getenv("POSTGRESQL_DB_USER")
@@ -20,10 +20,7 @@ class Database:
         with psycopg.connect(f"dbname={db_name} user={db_user}") as conn:
             with conn.cursor() as cur:
                 cur.execute(query, values)
-                cur.fetchall()
-
-                for record in cur:
-                    res.append(cur)
+                res = cur.fetchall()
 
                 conn.commit()
 
