@@ -10,7 +10,7 @@ class Database:
         self.queries = pgQueries()
 
     # execute in a try catch
-    def execute_query(self, query: str, values: list):
+    def execute_query(self, query: str, values: list, return_output: bool = False):
         import psycopg
         from dotenv import load_dotenv
         import os
@@ -34,29 +34,29 @@ class Database:
         ) as conn:
             with conn.cursor() as cur:
                 cur.execute(query, values)
-                res = cur.fetchall()
+
+                if return_output:
+                    res = cur.fetchall()
+                else:
+                    res = True
 
                 conn.commit()
 
         return res
 
     def add(self, person: Person):
-        try:
-            query = self.queries.add_person
-            values = [
-                person.first_name,
-                person.middle_name,
-                person.last_name,
-                person.personal_email,
-                person.cuny_email,
-                person.preferred_email,
-                person.discord,
-                person.emplid,
-            ]
-            return self.execute_query(query, values)
-        except Exception as e:
-            print("Exception Occurred", e)
-            return None
+        query = self.queries.add_person
+        values = [
+            person.first_name,
+            person.middle_name,
+            person.last_name,
+            person.personal_email,
+            person.school_email,
+            person.preferred_email,
+            person.discord,
+            person.emplid,
+        ]
+        return self.execute_query(query, values, True)
 
     def remove(self, person: list[Person]):
         query = self.queries.delete_person
@@ -80,7 +80,7 @@ class Database:
             values = []
 
             try:
-                res = self.execute_query(query, values)
+                res = self.execute_query(query, values, True)
                 return res
             except Exception as e:
                 print("Exception Occured", e)
@@ -92,7 +92,7 @@ class Database:
                 try:
                     query += " WHERE UID = (%s)"
                     values = person.uid
-                    res = self.execute_query(query, values)
+                    res = self.execute_query(query, values, True)
                     return res
                 except Exception as e:
                     print("exception occured", e)
@@ -107,7 +107,7 @@ class Database:
                 query += f" {field} LIKE %{getattr(person, field)}%,\n"
 
             try:
-                return self.execute_query(query, [])
+                return self.execute_query(query, [], True)
             except Exception as e:
                 print("Exception Occured", e)
                 return None
@@ -126,7 +126,7 @@ class Database:
     def select_cabinet(self):
         query = self.queries.select_cabinet
         try:
-            res = self.execute_query(query, ())
+            res = self.execute_query(query, (), True)
             return res
         except Exception as e:
             print("Exception occured:", e)
@@ -135,7 +135,7 @@ class Database:
     def select_blacklist(self):
         query = self.queries.select_blacklist
         try:
-            res = self.execute_query(query, ())
+            res = self.execute_query(query, (), True)
             return res
         except Exception as e:
             print("Exception occured:", e)
