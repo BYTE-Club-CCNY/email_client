@@ -2,7 +2,7 @@ class pgQueries:
     def __init__(self):
         self.select_blacklist = """SELECT *
                                 FROM people
-                                WHERE uid NOT IN (SELECT uid FROM blacklist);
+                                WHERE uid NOT IN (SELECT uid FROM blacklist)
                                 """
         self.select_cabinet = """SELECT *
                                 FROM people
@@ -16,4 +16,4 @@ class pgQueries:
         self.delete_person = """ DELETE FROM people WHERE uid = (%s) """
         self.add_person = """ INSERT INTO people (first_name, middle_name, last_name, 
                                 personal_email, cuny_email, preferred_email, discord, emplid)
-                                VALUES (%s, %s, %s, %s, %s, %s, %s, %s) """
+                                VALUES (%s, %s, %s, %s, %s, %s, %s, %s) RETURNING uid"""
