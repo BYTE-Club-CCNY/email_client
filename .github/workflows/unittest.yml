@@ -27,5 +27,4 @@ jobs:
           pip install -r req.txt
 
       - name: Run tests
-        run: |
-          python Test.py
+        run: python Test.py
