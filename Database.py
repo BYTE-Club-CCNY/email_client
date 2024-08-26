@@ -39,9 +39,7 @@ class Database:
                     res = cur.fetchall()
                 else:
                     res = True
-
                 conn.commit()
-
         return res
 
     def add(self, person: Person):
@@ -58,15 +56,10 @@ class Database:
         ]
         return self.execute_query(query, values, True)
 
-    def remove(self, person: list[Person]):
+    def remove(self, people: list[str]):
         query = self.queries.delete_person
-
-        values = []
-        for p in person:
-            values.append(p.uid)
-
         try:
-            self.execute_query(query, values)
+            self.execute_query(query, people)
             return True
         except Exception as e:
             return e

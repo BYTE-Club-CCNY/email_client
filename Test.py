@@ -48,11 +48,22 @@ class UnitTest(Test):
         )
 
         try:
-            _ = self.database.add(t)
+            res = self.database.add(t)[0]
+            self.uid_to_delete = str(res[0])
             self.passed_counter += 1
             return True
         except Exception as e:
             print("Add Test Unit Test failed\n", e)
+            return False
+
+    def delete_test(self):
+        try:
+            self.database.remove(self.uid_to_delete)
+            self.passed_counter += 1
+            return True
+        except Exception as e:
+            print("Deleting User Test Failed")
+            print(e)
             return False
 
     def get_test(self):
@@ -69,5 +80,6 @@ class UnitTest(Test):
 if __name__ == "__main__":
     ut = UnitTest()
     assert ut.load_environment() is True
-    assert ut.get_test() is True
     assert ut.add_test() is True
+    assert ut.get_test() is True
+    assert ut.delete_test() is True

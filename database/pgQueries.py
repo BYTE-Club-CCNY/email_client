@@ -1,10 +1,10 @@
 class pgQueries:
     def __init__(self):
-        self.select_blacklist = """SELECT *
+        self.select_blacklist = """ SELECT *
                                 FROM people
                                 WHERE uid NOT IN (SELECT uid FROM blacklist)
                                 """
-        self.select_cabinet = """SELECT *
+        self.select_cabinet = """ SELECT *
                                 FROM people
                                 WHERE uid IN (SELECT uid FROM cabinet);
                                 """
