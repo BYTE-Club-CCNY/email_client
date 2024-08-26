@@ -22,6 +22,7 @@ class Person:
         self.last_name = last_name
         self.school_email = school_email
         self.personal_email = personal_email
+        self.preferred_email = preferred_email
         self.accept = active
         self.discord = discord
         self.emplid = emplid
