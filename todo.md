@@ -11,4 +11,4 @@
 - [ ] Database.get should only return preferred email
 - [ ] Create wrapper function that sends emails via arguements
 - [ ] Create simple way to store and update email body, subject and candidates 
-- [ ] Write tests
+- [x] Write tests
