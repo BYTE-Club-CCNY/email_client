@@ -9,3 +9,6 @@
 - [x] creat git hook to update req.txt whenever env changes
 - [ ] refactor email_client to allow for null body 
 - [ ] Database.get should only return preferred email
+- [ ] Create wrapper function that sends emails via arguements
+- [ ] Create simple way to store and update email body, subject and candidates 
+- [ ] Write tests
