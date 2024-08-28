@@ -5,8 +5,9 @@ class Test:
     def __init__(self):
         from Database import Database
 
-        self.passed_counter = 0
+        self.failed = 0
         self.database = Database()
+        self.uid_to_delete = ""
 
     def load_environment(self):
         try:
@@ -15,17 +16,20 @@ class Test:
 
             load_dotenv()
 
-            _ = os.getenv("POSTGRESQL_DB")
-            _ = os.getenv("POSTGRESQL_DB_USER")
-            _ = os.getenv("POSTGRESQL_DB_PASSWORD")
-            _ = os.getenv("POSTGRESQL_DB_HOST")
-            _ = os.getenv("POSTGRESQL_DB_PORT")
+            db = os.getenv("POSTGRESQL_DB")
+            db_user = os.getenv("POSTGRESQL_DB_USER")
+            db_pass = os.getenv("POSTGRESQL_DB_PASSWORD")
+            db_host = os.getenv("POSTGRESQL_DB_HsadsOST")
+            db_port = os.getenv("POSTGRESQL_DB_PORT")
 
-            self.passed_counter += 1
+            if not db or not db_user or not db_pass or not db_host or not db_port:
+                raise Exception("Missing Certain Environment Variables")
             return True
 
         except Exception as e:
+            self.failed += 1
             print("Failed load environment test")
+            print(os.environ)
             print(e)
             return False
 
@@ -50,18 +54,18 @@ class UnitTest(Test):
         try:
             res = self.database.add(t)[0]
             self.uid_to_delete = str(res[0])
-            self.passed_counter += 1
             return True
         except Exception as e:
+            self.failed += 1
             print("Add Test Unit Test failed\n", e)
             return False
 
     def delete_test(self):
         try:
             self.database.remove(self.uid_to_delete)
-            self.passed_counter += 1
             return True
         except Exception as e:
+            self.failed += 1
             print("Deleting User Test Failed")
             print(e)
             return False
@@ -69,9 +73,9 @@ class UnitTest(Test):
     def get_test(self):
         try:
             _ = self.database.get()
-            self.passed_counter += 1
             return True
         except Exception as e:
+            self.failed += 1
             print("Get All Values test failed")
             print(e)
             return False
@@ -79,7 +83,14 @@ class UnitTest(Test):
 
 if __name__ == "__main__":
     ut = UnitTest()
-    assert ut.load_environment() is True
-    assert ut.add_test() is True
-    assert ut.get_test() is True
-    assert ut.delete_test() is True
+
+    ut.load_environment()
+    ut.add_test()
+    ut.get_test()
+    ut.delete_test()
+
+    if ut.failed > 0:
+        print("Tests Failed")
+        exit(1)
+    print("Tests Passed!")
+    exit(0)
