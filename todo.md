@@ -12,3 +12,14 @@
 - [ ] Create wrapper function that sends emails via arguements
 - [ ] Create simple way to store and update email body, subject and candidates 
 - [x] Write tests
+
+
+## Jawad
+- [ ] test the delete operation (why is it not working)
+- [ ] add current alumni to db
+- [ ] add blacklist to db 
+
+## Fahad
+- [ ] CLI arguments
+    - subject taken from CLI 
+- [ ] add the HTML functionality (grab the body.html file as the main body)
