@@ -1,4 +1,4 @@
-class Email_Client:
+class Email:
     def __init__(
         self,
         username: str,

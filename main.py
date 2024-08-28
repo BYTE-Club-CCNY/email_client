@@ -1,6 +1,6 @@
 """ strictly for testing only - main entry should be via post request"""
 
-from email_client import Email_Client
+from Email import Email
 from dotenv import load_dotenv
 import os
 
