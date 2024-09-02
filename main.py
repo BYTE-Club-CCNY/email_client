@@ -4,6 +4,7 @@ from Email import Email
 from dotenv import load_dotenv
 import os
 import argparse
+from Database import Database
 
 # https://docs.python.org/3/library/argparse.html
 if __name__ == "__main__":
@@ -15,6 +16,7 @@ if __name__ == "__main__":
         html_string = f.read()
 
     to = []
+    d = Database()
 
     parser = argparse.ArgumentParser(
         prog="BYTE Email Client",
@@ -30,17 +32,14 @@ if __name__ == "__main__":
     if not isinstance(args.subject, str):
         raise Exception("Subject must be a string")
 
-    if isinstance(args.cabinet, bool) and args.cabinet:
-        from Database import Database
+    if args.cabinet:
+        to.extend(d.get_cabinet())
 
-        d = Database()
-        to.append(*d.get_cabinet())
+    if args.active:
+        to.extend(d.get_active())
 
-    if isinstance(args.active, bool) and args.active:
-        from Database import Database
-
-        d = Database()
-        to.append(*d.get_active())
+    if not args.active or not args.cabinet:
+        to.extend(d.get_all())
 
     to.append("fahadfaruqi1@gmail.com")  # testing only
     e = Email(html_string, args.subject, to)
