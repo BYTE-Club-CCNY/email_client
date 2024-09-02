@@ -3,33 +3,43 @@
 from Email import Email
 from dotenv import load_dotenv
 import os
-# from argparse import argparse
+import argparse
 
 # https://docs.python.org/3/library/argparse.html
 if __name__ == "__main__":
-    from Database import Database
-    
-    # parser = argparse.ArgumentParser(
-    #                 prog='ProgramName',
-    #                 description='What the program does',
-    #                 epilog='Text at the bottom of help')
+    PATH = os.path.join(os.getcwd(), "body.html")
+    if not os.path.exists(PATH):
+        raise Exception("body.html missing")
 
-
-    # parser.add_argument('filename')           # positional argument
-    # parser.add_argument('-c', '--count')      # option that takes a value
-    # parser.add_argument('-v', '--verbose',
-    #                     action='store_true')  # on/off flag
-
-    # args = parser.parse_args()
-    # print(args.filename, args.count, args.verbose)
-
-    load_dotenv()
-    with open('body.html', 'r') as f:
+    with open(PATH, "r") as f:
         html_string = f.read()
-    username = os.getenv("USERNAME")
-    password = os.getenv("PASSWORD")
-    to = ["fahadfaruqi1@gmail.com"]
 
-    e = Email(username, password, html_string, "Test", to)
+    parser = argparse.ArgumentParser(
+        prog="BYTE Email Client",
+        description="Emails clients using database of current and previous BYTE applicants. Takes body from body.html. Defaults to emailing all in database regardless of active member",
+    )
+
+    parser.add_argument("subject")  # positional argument
+    parser.add_argument("-a", "--active")
+    parser.add_argument("-c", "--cabinet")
+
+    args = parser.parse_args()
+
+    if not isinstance(args.subject, str):
+        raise Exception("Subject must be a string")
+
+    if isinstance(args.cabinet, bool) and args.cabinet:
+        from Database import Database
+
+        d = Database()
+        to = d.get_cabinet()
+
+    if isinstance(args.active, bool) and args.active:
+        from Database import Database
+
+        d = Database()
+        to = d.get_active()
+
+    to = ["fahadfaruqi1@gmail.com"]  # testing only
+    e = Email(html_string, args.subject, to)
     e.email()
-
