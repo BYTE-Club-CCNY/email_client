@@ -8,9 +8,9 @@
 - [ ] expand server to send selective emails
 - [x] creat git hook to update req.txt whenever env changes
 - [ ] refactor email_client to allow for null body 
-- [ ] Database.get should only return preferred email
-- [ ] Create wrapper function that sends emails via arguements
-- [ ] Create simple way to store and update email body, subject and candidates 
+- [x] Database.get should only return preferred email
+- [x] Create wrapper function that sends emails via arguements
+- [x] Create simple way to store and update email body, subject and candidates 
 - [x] Write tests
 
 
@@ -23,3 +23,5 @@
 - [x] CLI arguments
     - [x] subject taken from CLI 
 - [x] add the HTML functionality (grab the body.html file as the main body)
+- [ ] update readme
+- [ ] expand tests
