@@ -1,8 +1,6 @@
 class Email:
     def __init__(
         self,
-        username: str,
-        password: str,
         message: str,
         subject: str,
         to: list[str],
@@ -10,6 +8,16 @@ class Email:
     ):
         from email.mime.multipart import MIMEMultipart
         from email.mime.text import MIMEText
+        import os
+        from dotenv import load_dotenv
+
+        load_dotenv()
+
+        username = os.getenv("USERNAME")
+        password = os.getenv("PASSWORD")
+
+        if not username or not password:
+            raise Exception("missing environment variables USERNAME or PASSWORD")
 
         self.message = MIMEMultipart("alternative")
         self.message["Subject"] = subject
