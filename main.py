@@ -21,7 +21,7 @@ if __name__ == "__main__":
         description="Emails clients using database of current and previous BYTE applicants. Takes body from body.html. Defaults to emailing all in database regardless of active member",
     )
 
-    parser.add_argument("subject")  # positional argument
+    parser.add_argument("subject")
     parser.add_argument("-a", "--active")
     parser.add_argument("-c", "--cabinet")
 
