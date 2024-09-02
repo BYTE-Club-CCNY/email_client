@@ -20,6 +20,6 @@
 - [ ] add blacklist to db 
 
 ## Fahad
-- [ ] CLI arguments
-    - subject taken from CLI 
-- [ ] add the HTML functionality (grab the body.html file as the main body)
+- [x] CLI arguments
+    - [x] subject taken from CLI 
+- [x] add the HTML functionality (grab the body.html file as the main body)
