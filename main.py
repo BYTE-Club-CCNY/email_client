@@ -14,6 +14,8 @@ if __name__ == "__main__":
     with open(PATH, "r") as f:
         html_string = f.read()
 
+    to = []
+
     parser = argparse.ArgumentParser(
         prog="BYTE Email Client",
         description="Emails clients using database of current and previous BYTE applicants. Takes body from body.html. Defaults to emailing all in database regardless of active member",
@@ -32,14 +34,14 @@ if __name__ == "__main__":
         from Database import Database
 
         d = Database()
-        to = d.get_cabinet()
+        to.append(*d.get_cabinet())
 
     if isinstance(args.active, bool) and args.active:
         from Database import Database
 
         d = Database()
-        to = d.get_active()
+        to.append(*d.get_active())
 
-    to = ["fahadfaruqi1@gmail.com"]  # testing only
+    to.append("fahadfaruqi1@gmail.com")  # testing only
     e = Email(html_string, args.subject, to)
     e.email()
