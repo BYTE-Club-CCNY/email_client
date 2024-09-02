@@ -116,8 +116,17 @@ class Database:
             print("Exception Occured", e)
             return None
 
-    def select_cabinet(self):
+    def get_cabinet(self):
         query = self.queries.select_cabinet
+        try:
+            res = self.execute_query(query, (), True)
+            return res
+        except Exception as e:
+            print("Exception occured:", e)
+            return None
+
+    def get_active(self):
+        query = self.queries.select_active
         try:
             res = self.execute_query(query, (), True)
             return res
