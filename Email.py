@@ -8,11 +8,21 @@ class Email:
         to: list[str],
         cc: list[str] = None,
     ):
+        from email.mime.multipart import MIMEMultipart
+        from email.mime.text import MIMEText
+
+        self.message = MIMEMultipart('alternative')
+        self.message["Subject"] = subject
+        self.message["From"] = username
+        self.message["To"] = ", ".join(to)
+        self.message["Cc"] = ", ".join(cc) if cc else ""
+        self.message.attach(MIMEText(message, "plain"))
+        self.message.attach(MIMEText(message, "html"))
+
         self.mailserver = "smtp.gmail.com"
         self.serverPort = 465
         self.username = username
         self.password = password
-        self.message = "Subject: {}\n\n{}".format(subject, message)
         self.to = to
         self.cc = cc
 
@@ -31,7 +41,7 @@ class Email:
             try:
                 server.ehlo()
                 server.login(self.username, self.password)
-                server.sendmail(self.username, self.to, self.message)
+                server.sendmail(self.username, self.to, self.message.as_string())
                 server.quit()
                 print("Email Sent")
             except smtplib.SMTPRecipientsRefused as e:
