@@ -26,12 +26,6 @@ class Email:
         self.to = to
         self.cc = cc
 
-    def add_to(self, to: str | list[str]):
-        if isinstance(to, str):
-            self.to.append(to)
-        else:
-            self.to.append(*to)
-
     # will open an smpt server
     def email(self):
         from smtplib import SMTP_SSL
