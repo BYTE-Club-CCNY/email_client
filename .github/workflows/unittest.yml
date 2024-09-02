@@ -11,6 +11,7 @@ on:
 
 jobs:
   test:
+    environment: secrets
     runs-on: ubuntu-latest
 
     steps:
@@ -24,6 +25,8 @@ jobs:
 
       - name: Install dependencies
         env:
+          USERNAME: ${{secrets.USERNAME}}
+          PASSWORD: ${{secrets.PASSWORD}}
           POSTGRESQL_DB_USER: ${{ secrets.POSTGRESQL_DB_USER }}
           POSTGRESQL_DB_PASSWORD: ${{ secrets.POSTGRESQL_DB_PASSWORD }}
           POSTGRESQL_DB: ${{ secrets.POSTGRESQL_DB }}

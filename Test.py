@@ -37,10 +37,8 @@ class Test:
             return True
 
         except Exception as e:
-            self.failed = True
-            print("Failed load environment test")
-            print(e)
-            return False
+            print(user, password, db, db_host, db_pass, db_port, db_user)
+            raise e
 
 
 class UnitTest(Test):
@@ -73,11 +71,9 @@ class UnitTest(Test):
         try:
             self.database.remove(self.uid_to_delete)
             return True
-        except Exception as e:
+        except Exception:
             self.failed = True
-            print("Deleting User Test Failed")
-            print(e)
-            return False
+            raise Exception("Deleting User Test Failed")
 
     def get_test(self):
         try:
