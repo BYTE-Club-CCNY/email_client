@@ -142,6 +142,19 @@ class Database:
             print("Exception occured:", e)
             return None
 
+    def get_all(self):
+        query = self.queries.select_all_no_blacklist
+        try:
+            response = self.execute_query(query, (), True)
+            arr = []
+
+            for res in response:
+                arr.append(res[0])
+            return arr
+        except Exception as e:
+            print("Exception occured:", e)
+            return None
+
     def select_blacklist(self):
         query = self.queries.select_blacklist
         try:
