@@ -11,7 +11,7 @@ class Email:
         from email.mime.multipart import MIMEMultipart
         from email.mime.text import MIMEText
 
-        self.message = MIMEMultipart('alternative')
+        self.message = MIMEMultipart("alternative")
         self.message["Subject"] = subject
         self.message["From"] = username
         self.message["To"] = ", ".join(to)
