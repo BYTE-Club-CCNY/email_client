@@ -5,7 +5,7 @@ then
     echo "Python3 is not installed."
     exit 1
 fi
-s
+
 python3 -m venv env
 source env/bin/activate
-pip3 install -r requirements.txt
+pip3 install -r req.txt
