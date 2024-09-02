@@ -22,8 +22,8 @@ if __name__ == "__main__":
     )
 
     parser.add_argument("subject")
-    parser.add_argument("-a", "--active")
-    parser.add_argument("-c", "--cabinet")
+    parser.add_argument("-a", "--active", action="store_true")
+    parser.add_argument("-c", "--cabinet", action="store_true")
 
     args = parser.parse_args()
 
