@@ -25,3 +25,4 @@
 - [x] add the HTML functionality (grab the body.html file as the main body)
 - [ ] update readme
 - [ ] expand tests
+- [ ] fix github action
