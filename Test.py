@@ -5,7 +5,7 @@ class Test:
     def __init__(self):
         from Database import Database
 
-        self.failed = 0
+        self.failed = False
         self.database = Database()
         self.uid_to_delete = ""
 
@@ -16,20 +16,29 @@ class Test:
 
             load_dotenv()
 
+            user = os.getenv("USERNAME")
+            password = os.getenv("PASSWORD")
             db = os.getenv("POSTGRESQL_DB")
             db_user = os.getenv("POSTGRESQL_DB_USER")
             db_pass = os.getenv("POSTGRESQL_DB_PASSWORD")
-            db_host = os.getenv("POSTGRESQL_DB_HsadsOST")
+            db_host = os.getenv("POSTGRESQL_DB_HOST")
             db_port = os.getenv("POSTGRESQL_DB_PORT")
 
-            if not db or not db_user or not db_pass or not db_host or not db_port:
+            if (
+                not db
+                or not db_user
+                or not db_pass
+                or not db_host
+                or not db_port
+                or not password
+                or not user
+            ):
                 raise Exception("Missing Certain Environment Variables")
             return True
 
         except Exception as e:
-            self.failed += 1
+            self.failed = True
             print("Failed load environment test")
-            print(os.environ)
             print(e)
             return False
 
@@ -56,7 +65,7 @@ class UnitTest(Test):
             self.uid_to_delete = str(res[0])
             return True
         except Exception as e:
-            self.failed += 1
+            self.failed = True
             print("Add Test Unit Test failed\n", e)
             return False
 
@@ -65,7 +74,7 @@ class UnitTest(Test):
             self.database.remove(self.uid_to_delete)
             return True
         except Exception as e:
-            self.failed += 1
+            self.failed = True
             print("Deleting User Test Failed")
             print(e)
             return False
@@ -75,7 +84,7 @@ class UnitTest(Test):
             _ = self.database.get()
             return True
         except Exception as e:
-            self.failed += 1
+            self.failed = True
             print("Get All Values test failed")
             print(e)
             return False
@@ -89,7 +98,7 @@ if __name__ == "__main__":
     ut.get_test()
     ut.delete_test()
 
-    if ut.failed > 0:
+    if ut.failed:
         print("Tests Failed")
         exit(1)
     print("Tests Passed!")

@@ -58,6 +58,7 @@ class Database:
 
     def remove(self, people: list[str]):
         query = self.queries.delete_person
+        people = [people]
         try:
             self.execute_query(query, people)
             return True

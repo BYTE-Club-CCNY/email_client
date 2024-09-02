@@ -15,7 +15,7 @@
 
 
 ## Jawad
-- [ ] test the delete operation (why is it not working)
+- [x] test the delete operation (why is it not working)
 - [ ] add current alumni to db
 - [ ] add blacklist to db 
 
