@@ -119,8 +119,12 @@ class Database:
     def get_cabinet(self):
         query = self.queries.select_cabinet
         try:
-            res = self.execute_query(query, (), True)
-            return res
+            response = self.execute_query(query, (), True)
+            arr = []
+
+            for res in response:
+                arr.append(res[0])
+            return arr
         except Exception as e:
             print("Exception occured:", e)
             return None
@@ -128,8 +132,12 @@ class Database:
     def get_active(self):
         query = self.queries.select_active
         try:
-            res = self.execute_query(query, (), True)
-            return res
+            response = self.execute_query(query, (), True)
+            arr = []
+
+            for res in response:
+                arr.append(res[0])
+            return arr
         except Exception as e:
             print("Exception occured:", e)
             return None
