@@ -42,3 +42,5 @@ class pgQueries:
         self.add_person = """ INSERT INTO people (first_name, middle_name, last_name, 
                                 personal_email, cuny_email, preferred_email, discord, emplid)
                                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s) RETURNING uid"""
+        self.mark_inactive = """ UPDATE people SET active = false WHERE uid = (%s) """
+        self.mark_active = """ UPDATE people SET active = true WHERE uid = (%s) """
