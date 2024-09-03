@@ -59,3 +59,4 @@ class Email:
                 exit(1)
             except Exception as e:
                 print(f"Unhandled Exception occured!\n {str(e)}")
+                exit(1)
