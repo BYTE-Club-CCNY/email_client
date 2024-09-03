@@ -1,7 +1,6 @@
 """ main entry for application """
 
 from Email import Email
-from dotenv import load_dotenv
 import os
 import argparse
 from Database import Database
