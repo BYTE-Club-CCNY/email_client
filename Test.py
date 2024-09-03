@@ -10,35 +10,31 @@ class Test:
         self.uid_to_delete = ""
 
     def load_environment(self):
-        try:
-            import os
-            from dotenv import load_dotenv
+        import os
+        from dotenv import load_dotenv
 
-            load_dotenv()
+        load_dotenv()
 
-            user = os.getenv("USERNAME")
-            password = os.getenv("PASSWORD")
-            db = os.getenv("POSTGRESQL_DB")
-            db_user = os.getenv("POSTGRESQL_DB_USER")
-            db_pass = os.getenv("POSTGRESQL_DB_PASSWORD")
-            db_host = os.getenv("POSTGRESQL_DB_HOST")
-            db_port = os.getenv("POSTGRESQL_DB_PORT")
+        user = os.getenv("USERNAME")
+        password = os.getenv("PASSWORD")
+        db = os.getenv("POSTGRESQL_DB")
+        db_user = os.getenv("POSTGRESQL_DB_USER")
+        db_pass = os.getenv("POSTGRESQL_DB_PASSWORD")
+        db_host = os.getenv("POSTGRESQL_DB_HOST")
+        db_port = os.getenv("POSTGRESQL_DB_PORT")
 
-            if (
-                not db
-                or not db_user
-                or not db_pass
-                or not db_host
-                or not db_port
-                or not password
-                or not user
-            ):
-                raise Exception("Missing Certain Environment Variables")
-            return True
-
-        except Exception as e:
+        if (
+            not db
+            or not db_user
+            or not db_pass
+            or not db_host
+            or not db_port
+            or not password
+            or not user
+        ):
             print(user, password, db, db_host, db_pass, db_port, db_user)
-            raise e
+            raise Exception("Missing Certain Environment Variables")
+        return True
 
 
 class UnitTest(Test):
