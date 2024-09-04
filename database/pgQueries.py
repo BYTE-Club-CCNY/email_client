@@ -37,6 +37,7 @@ class pgQueries:
                                 FROM people where active = 1 """
 
         self.add_cabinet = """ INSERT INTO cabinet (uid) VALUES (%s) """
+        self.remove_cabinet="""DELETE FROM cabinet WHERE uid=%s"""
         self.add_blacklist = """ INSERT INTO blacklist (uid) VALUES (%s) """
         self.delete_person = """ DELETE FROM people WHERE uid = (%s) """
         self.add_person = """ INSERT INTO people (first_name, middle_name, last_name, 
