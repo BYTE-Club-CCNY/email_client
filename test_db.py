@@ -19,10 +19,13 @@ new_person = Person(
 db = Database()
 
 
-#=uid = db.add(new_person)
+#uid = db.add(new_person)
 #db.add_cabinet(uid[0])
+
+db.remove(['71343118-4947-4411-b440-453448beb10b'])
 cabinet_members = db.get_cabinet()
 print("Cabinet members:", cabinet_members)
+print(db.get_all())
 
 
 
