@@ -51,6 +51,7 @@ class Database:
             person.personal_email,
             person.school_email,
             person.preferred_email,
+            person.active,
             person.discord,
             person.emplid,
         ]
