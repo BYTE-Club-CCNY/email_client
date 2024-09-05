@@ -12,7 +12,7 @@
 - [x] Create wrapper function that sends emails via arguements
 - [x] Create simple way to store and update email body, subject and candidates 
 - [x] Write tests
-
+- [ ] Fix cascade of deletes and updates. Requires implementation of foreign keys for cabinet and blacklist tables
 
 ## Jawad
 - [x] test the delete operation (why is it not working)

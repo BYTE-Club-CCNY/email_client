@@ -108,9 +108,9 @@ class Database:
                 print("Exception Occured", e)
                 return None
 
-    def add_cabinet(self, person: Person):
+    def add_cabinet(self, person: str):
         query = self.queries.add_cabinet
-        values = person.uid
+        values = person
 
         try:
             res = self.execute_query(query, values)
@@ -118,7 +118,15 @@ class Database:
         except Exception as e:
             print("Exception Occured", e)
             return None
-
+    def del_cabinet(self,person:str):
+        query=self.queries.remove_cabinet
+        values=person
+        try:
+            res = self.execute_query(query, values)
+            return res
+        except Exception as e:
+            print("Exception Occured", e)
+            return None
     def get_cabinet(self):
         query = self.queries.select_cabinet
         try:
