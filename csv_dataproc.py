@@ -23,10 +23,10 @@ for index,row in df.iterrows():
     name_arr[-1],
     row['What is your CityMail?'],
     row['if you prefer we contact your personal email, please put it here'],
-    (row['if you prefer we contact your personal email, please put it here']!=None),
+    pd.notna(row['if you prefer we contact your personal email, please put it here']), #had to use gpt :(
     False, #active bool. by default is false for all members.
-    row["What's your discord?"],
-    row['What is your CityMail?']
+    row['What is your EMPLID'],
+    row["What's your discord?"]
     )
 
     db.add(new_person)
