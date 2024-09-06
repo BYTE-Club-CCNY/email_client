@@ -7,3 +7,4 @@ firebase.json
 env/
 __pycache__/
 body.html
+add_cabinet.py
