@@ -19,14 +19,28 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
         prog="BYTE Email Client",
-        description="Emails clients using database of current and previous BYTE applicants. Takes body from body.html. Defaults to emailing all in database regardless of active member",
+        description="Emails clients using database of current and previous BYTE applicants. Takes body from body.html. Defaults to emailing all in database regardless of active member. Blacklisted folks are ignored by default, unless specified otherwise",
     )
 
     parser.add_argument("subject")
     parser.add_argument("-a", "--active", action="store_true")
     parser.add_argument("-c", "--cabinet", action="store_true")
+    parser.add_argument("-t", "--testing", action="store_true")
+    parser.add_argument("-g", "--get-person")
+    parser.add_argument("-b", "--add-blacklist")
 
     args = parser.parse_args()
+
+    if args.add_blacklist is not None:
+        d.add_blacklist(args.add_blacklist)
+        exit(0)
+
+    if args.get_person is not None:
+        res = d.get_person_by_name(args.get_person)
+
+        print(res)
+
+        exit(0)
 
     if not isinstance(args.subject, str):
         raise Exception("Subject must be a string")
@@ -40,5 +54,6 @@ if __name__ == "__main__":
     if not args.active and not args.cabinet:
         to.extend(d.get_all())
 
-    e = Email(html_string, args.subject, to)
-    e.email()
+    if not args.testing:
+        e = Email(html_string, args.subject, to)
+        # e.email()
