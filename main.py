@@ -40,6 +40,5 @@ if __name__ == "__main__":
     if not args.active and not args.cabinet:
         to.extend(d.get_all())
 
-    to.append("fahadfaruqi1@gmail.com")  # testing only
     e = Email(html_string, args.subject, to)
     e.email()
