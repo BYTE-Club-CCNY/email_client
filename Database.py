@@ -68,6 +68,21 @@ class Database:
         except Exception as e:
             return e
 
+    def get_person_by_name(self, people: str or list[str]):
+        query = self.queries.select_people
+
+        if isinstance(people, str):
+            values = [people]
+        else:
+            values = people
+
+        try:
+            res = self.execute_query(query, values, True)
+            return res
+        except Exception as e:
+            print("Exception Occured", e)
+            return None
+
     def get(self, person: Person = None, select_blacklist: bool = False):
         if not person:
             if not select_blacklist:
@@ -119,15 +134,17 @@ class Database:
         except Exception as e:
             print("Exception Occured", e)
             return None
-    def del_cabinet(self,person:str):
-        query=self.queries.remove_cabinet
-        values=person
+
+    def del_cabinet(self, person: str):
+        query = self.queries.remove_cabinet
+        values = person
         try:
             res = self.execute_query(query, values)
             return res
         except Exception as e:
             print("Exception Occured", e)
             return None
+
     def get_cabinet(self):
         query = self.queries.select_cabinet
         try:
@@ -176,9 +193,9 @@ class Database:
             print("Exception occured:", e)
             return None
 
-    def add_blacklist(self, person: Person):
+    def add_blacklist(self, uid: str):
         query = self.queries.add_blacklist
-        values = person.uid
+        values = uid
 
         try:
             res = self.execute_query(query, values)
