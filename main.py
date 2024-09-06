@@ -26,8 +26,8 @@ if __name__ == "__main__":
     parser.add_argument("-a", "--active", action="store_true")
     parser.add_argument("-c", "--cabinet", action="store_true")
     parser.add_argument("-t", "--testing", action="store_true")
-    parser.add_argument("-g", "--get-person")
-    parser.add_argument("-b", "--add-blacklist")
+    parser.add_argument("-g", "--get-person")  # first name only
+    parser.add_argument("-b", "--add-blacklist")  # uid only
 
     args = parser.parse_args()
 
@@ -37,9 +37,7 @@ if __name__ == "__main__":
 
     if args.get_person is not None:
         res = d.get_person_by_name(args.get_person)
-
         print(res)
-
         exit(0)
 
     if not isinstance(args.subject, str):
