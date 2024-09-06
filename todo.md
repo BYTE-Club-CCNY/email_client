@@ -28,4 +28,4 @@
 - [x] update readme
 - [ ] expand tests
 - [ ] fix github action
-- [ ] add database function to mark everyone/ specific persion as inactive
+- [x] add database function to mark everyone/ specific persion as inactive
