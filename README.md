@@ -15,9 +15,4 @@ pip install -r req.txt
 ```
 And now you should be good to go!
 ## Functionalities
-So with this project I used a Firebase database to hold the emails of well over 200+ members. This will be scraped from our xlsx file that we place as an input. We would then pipe the emails into the email client through querying, and then using smtp connection to the google server, we will push all the emails to the recipients' accounts. Other than that, I intend to create a FastAPI backend just for the sake of having one. Not entirely sure if I will implement a front end, prob will. 
-
-## To Do List
-- [ ] Implement routes
-- [ ] Implement input system for csv file
-- [ ] Implement scheduling for emails
+So with this project I used a PostgreSQL database to hold the emails of well over 200+ members. This will be scraped from our csv files that we place as an input (for safety these have been omitted). We would then pipe the emails into the email client through pandas manipulation, and then using smtp connection to the google server, we will push all the emails to the recipients' accounts. We have implemented command line arguments to enable ease of access. 
