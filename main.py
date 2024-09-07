@@ -22,14 +22,33 @@ if __name__ == "__main__":
         description="Emails clients using database of current and previous BYTE applicants. Takes body from body.html. Defaults to emailing all in database regardless of active member. Blacklisted folks are ignored by default, unless specified otherwise",
     )
 
-    parser.add_argument("subject")
-    parser.add_argument("-a", "--active", action="store_true")
-    parser.add_argument("-c", "--cabinet", action="store_true")
-    parser.add_argument("-t", "--testing", action="store_true")
-    parser.add_argument("-g", "--get-person")  # first name only
-    parser.add_argument("-b", "--add-blacklist")  # uid only
+    # parser.add_argument("subject")
+    parser.add_argument(
+        "-a", "--active", action="store_true", help="email all active members only"
+    )
+    parser.add_argument(
+        "-c", "--cabinet", action="store_true", help="email all cabinet members only"
+    )
+    parser.add_argument(
+        "-t", "--testing", action="store_true", help="testing, won't send an email"
+    )
+    parser.add_argument("-g", "--get-person", type=str, help="get person by first name")
+    parser.add_argument("-b", "--add-blacklist", help="add person to blacklist by uid")
+    parser.add_argument(
+        "-add",
+        "--add-person",
+        action="store_true",
+        help="start program to add person into database",
+    )
 
     args = parser.parse_args()
+
+    if args.add_person:
+        from Person import Person
+
+        ad = Person()
+        ad.add_person()
+        exit(0)
 
     if args.add_blacklist is not None:
         d.add_blacklist(args.add_blacklist)
