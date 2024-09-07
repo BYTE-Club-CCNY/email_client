@@ -25,3 +25,42 @@ class Person:
         self.active = active
         self.discord = discord
         self.emplid = emplid
+
+    def add_person(self):
+        from Database import Database
+        from Validation import Input
+
+        # color?
+
+        print(
+            "Input New User Information (* means manditory)\nOptional fields you can leave blank"
+        )
+
+        try:
+            full_name = Input("Full Name*: ", str).val.split(" ")
+            self.first_name = full_name[0]
+
+            if len(full_name) > 1:
+                self.last_name = full_name[-1]
+
+                middle_name = " ".join(full_name[1:-1])
+                self.middle_name = middle_name if middle_name != " " else None
+
+            self.school_email = Input("School Email*: ", str).val
+            self.personal_email = Input(
+                "Personal Email (assumed to be preferred): ", str, True
+            ).val
+
+            if self.personal_email:
+                self.preferred_email = True
+
+            self.active = Input("Active BYTE member? (y/n)*: ", bool).val
+            self.discord = Input("Discord: ", str, True).val
+            self.emplid = Input("Emplid*: ", int).val
+
+        except KeyboardInterrupt:
+            exit(1)
+
+        d = Database()
+        d.add(self)
+        return
