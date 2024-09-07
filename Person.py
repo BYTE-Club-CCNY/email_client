@@ -33,7 +33,7 @@ class Person:
         # color?
 
         print(
-            "Input New User Information (* means manditory)\nOptional fields you can leave blank"
+            "Input New User Information (* means manditory)\nOptional fields you can leave blank.\n^c to exit"
         )
 
         try:
@@ -64,3 +64,4 @@ class Person:
         d = Database()
         d.add(self)
         return
+
