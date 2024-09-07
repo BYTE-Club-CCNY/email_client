@@ -124,9 +124,11 @@ class Database:
                 print("Exception Occured", e)
                 return None
 
-    def add_cabinet(self, person: str):
+    def add_cabinet(self, uid: str):
         query = self.queries.add_cabinet
-        values = person
+        values = uid
+        if isinstance(uid, str):
+            values = [uid]
 
         try:
             res = self.execute_query(query, values)

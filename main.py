@@ -38,7 +38,10 @@ if __name__ == "__main__":
         "-add",
         "--add-person",
         action="store_true",
-        help="start program to add person into database",
+        help="start CLI to add person into database",
+    )
+    parser.add_argument(
+        "-ac", "--add-cabinet", type=str, help="add cabinet to database via uid"
     )
 
     args = parser.parse_args()
@@ -48,6 +51,10 @@ if __name__ == "__main__":
 
         ad = Person()
         ad.add_person()
+        exit(0)
+
+    if args.add_cabinet:
+        d.add_cabinet(args.add_cabinet)
         exit(0)
 
     if args.add_blacklist is not None:
