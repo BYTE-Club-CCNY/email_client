@@ -31,7 +31,7 @@
 - [ ] Add functionality to mark a user as not wanting to recieve emails (for graduated alumni)
 - [ ] Add a link on the bottom of custom emails to allow users to delete their entry from our database or mark themselves as not wanting to recieve emails
 - [x] Email each user specifically rather than sending a group email (avoid a Vansh situation)
-- [ ] Expand CLI to add a person
+- [x] Expand CLI to add a person
 - [ ] Expand CLI to remove a person
 - [ ] Expand CLI to include hints in the `-h` menu
 - [ ] Expand CLI to combine flags to modify `--get` flag 
