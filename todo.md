@@ -2,7 +2,7 @@
 - [ ] explore writing in a compiled language (faster)
 - [x] abstract code into multiple files
 - [x] add classes
-- [ ] (thoughts) send emails in isolation? i.e. users do not see who else got an email
+- [x] (thoughts) send emails in isolation? i.e. users do not see who else got an email
 - [x] add database table for cabinet members 
 - [ ] expand server to send selective emails
 - [x] creat git hook to update req.txt whenever env changes
@@ -30,7 +30,7 @@
 - [x] add database function to mark everyone/ specific persion as inactive
 - [ ] Add functionality to mark a user as not wanting to recieve emails (for graduated alumni)
 - [ ] Add a link on the bottom of custom emails to allow users to delete their entry from our database or mark themselves as not wanting to recieve emails
-- [ ] Email each user specifically rather than sending a group email (avoid a Vansh situation)
+- [x] Email each user specifically rather than sending a group email (avoid a Vansh situation)
 - [ ] Expand CLI to add a person
 - [ ] Expand CLI to remove a person
 - [ ] Expand CLI to include hints in the `-h` menu

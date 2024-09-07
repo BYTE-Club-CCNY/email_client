@@ -43,7 +43,10 @@ class Email:
             try:
                 server.ehlo()
                 server.login(self.username, self.password)
-                server.sendmail(self.username, self.to, self.message.as_string())
+
+                for to in self.to:
+                    server.sendmail(self.username, to, self.message.as_string())
+
                 server.quit()
                 print("Email Sent")
             except smtplib.SMTPRecipientsRefused as e:
