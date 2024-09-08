@@ -22,15 +22,14 @@ if __name__ == "__main__":
         description="Emails clients using database of current and previous BYTE applicants. Takes body from body.html. Defaults to emailing all in database regardless of active member. Blacklisted folks are ignored by default, unless specified otherwise",
     )
 
-    # parser.add_argument("subject")
     parser.add_argument(
-        "-a", "--active", action="store_true", help="email all active members only"
+        "-a", "--active", type=str, help="email all active members only"
     )
     parser.add_argument(
-        "-c", "--cabinet", action="store_true", help="email all cabinet members only"
+        "-c", "--cabinet", type=str, help="email all cabinet members only"
     )
     parser.add_argument(
-        "-t", "--testing", action="store_true", help="testing, won't send an email"
+        "-all", "--all", type=str, help="email everyone in our database minus blacklist"
     )
     parser.add_argument("-g", "--get-person", type=str, help="get person by first name")
     parser.add_argument("-b", "--add-blacklist", help="add person to blacklist by uid")
@@ -40,8 +39,9 @@ if __name__ == "__main__":
         action="store_true",
         help="start CLI to add person into database",
     )
+    parser.add_argument("-ac", "--add-cabinet", type=str, help="add uid to cabinet")
     parser.add_argument(
-        "-ac", "--add-cabinet", type=str, help="add cabinet to database via uid"
+        "-rc", "--remove-cabinet", type=str, help="remove uid from cabinet"
     )
 
     args = parser.parse_args()
@@ -57,6 +57,10 @@ if __name__ == "__main__":
         d.add_cabinet(args.add_cabinet)
         exit(0)
 
+    if args.remove_cabinet:
+        d.del_cabinet(args.remove_cabinet)
+        exit(0)
+
     if args.add_blacklist is not None:
         d.add_blacklist(args.add_blacklist)
         exit(0)
@@ -66,18 +70,14 @@ if __name__ == "__main__":
         print(res)
         exit(0)
 
-    if not isinstance(args.subject, str):
-        raise Exception("Subject must be a string")
-
     if args.cabinet:
-        to.extend(d.get_cabinet())
+        e = Email(html_string, args.cabinet, d.get_cabinet())
+        e.email()
 
     if args.active:
-        to.extend(d.get_active())
+        e = Email(html_string, args.active, d.get_active())
+        # e.email()
 
-    if not args.active and not args.cabinet:
-        to.extend(d.get_all())
-
-    if not args.testing:
-        e = Email(html_string, args.subject, to)
+    if args.all:
+        e = Email(html_string, args.all, d.get_all())
         # e.email()
