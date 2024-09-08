@@ -60,6 +60,4 @@ class Email:
             except smtplib.SMTPSenderRefused as e:
                 print("Server did not accept one of the 'to' addresses", e)
                 exit(1)
-            except Exception as e:
-                print(f"Unhandled Exception occured!\n {str(e)}")
-                exit(1)
+
