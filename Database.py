@@ -124,7 +124,7 @@ class Database:
                 print("Exception Occured", e)
                 return None
 
-    def add_cabinet(self, uid: str):
+    def add_cabinet(self, uid: str or list[str]):
         query = self.queries.add_cabinet
         values = uid
         if isinstance(uid, str):
@@ -137,9 +137,11 @@ class Database:
             print("Exception Occured", e)
             return None
 
-    def del_cabinet(self, person: str):
+    def del_cabinet(self, uid: str or list[str]):
         query = self.queries.remove_cabinet
-        values = person
+        values = uid
+        if isinstance(values, str):
+            values = [uid]
         try:
             res = self.execute_query(query, values)
             return res
