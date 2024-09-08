@@ -31,6 +31,13 @@ if __name__ == "__main__":
     parser.add_argument(
         "-all", "--all", type=str, help="email everyone in our database minus blacklist"
     )
+    parser.add_argument(
+        "-s",
+        "--specific",
+        type=str,
+        nargs="+",
+        help="email specifically these people, last argument is the subject",
+    )
     parser.add_argument("-g", "--get-person", type=str, help="get person by first name")
     parser.add_argument("-b", "--add-blacklist", help="add person to blacklist by uid")
     parser.add_argument(
@@ -45,6 +52,10 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args()
+
+    if args.specific:
+        e = Email(html_string, args.specific[0:-1], args.specific[-1])
+        e.email()
 
     if args.add_person:
         from Person import Person

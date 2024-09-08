@@ -4,7 +4,7 @@
 - [x] add classes
 - [x] (thoughts) send emails in isolation? i.e. users do not see who else got an email
 - [x] add database table for cabinet members 
-- [ ] expand server to send selective emails
+- [x] expand server to send selective emails
 - [x] creat git hook to update req.txt whenever env changes
 - [x] refactor email_client to allow for null body 
 - [x] Database.get should only return preferred email
