@@ -17,6 +17,7 @@
 - [x] expand cli to disable all active users (excluding cabinet)
 - [x] expand cli to disable specific users
 - [x] expand cli to enable specific users
+- [ ] pretty print the `-get` flag results (so all fields have an obvious tag)
 
 ## Jawad
 - [x] test the delete operation (why is it not working)
