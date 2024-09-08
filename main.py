@@ -73,6 +73,14 @@ if __name__ == "__main__":
         help="mark following uids as inactive",
     )
 
+    parser.add_argument(
+        "-ma",
+        "--mark-active",
+        type=str,
+        nargs="+",
+        help="mark following uids as active",
+    )
+
     args = parser.parse_args()
 
     if args.mark_inactive:
@@ -91,7 +99,7 @@ if __name__ == "__main__":
         exit(0)
 
     if args.specific:
-        e = Email(html_string, args.specific[0:-1], args.specific[-1])
+        e = Email(html_string, args.specific[-1], args.specific[0:-1])
         e.email()
 
     if args.add_person:
@@ -121,7 +129,8 @@ if __name__ == "__main__":
 
     if args.get_person:
         res = d.get_person_by_name(args.get_person)
-        print(res)
+        for entry in res:
+            print(entry, end="\n" + "-" * len(str(entry)) + "\n")
         exit(0)
 
     if args.cabinet:
