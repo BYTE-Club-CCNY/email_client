@@ -34,6 +34,6 @@
 - [x] Expand CLI to add a person
 - [ ] Expand CLI to remove a person
 - [x] Expand CLI to add person to cabinet
-- [ ] Expand CLI to remove person from cabinet
-- [ ] Expand CLI to include hints in the `-h` menu
+- [x] Expand CLI to remove person from cabinet
+- [x] Expand CLI to include hints in the `-h` menu
 - [ ] Expand CLI to combine flags to modify `--get` flag 
