@@ -70,7 +70,7 @@ class Database:
             return e
 
     def get_person_by_name(self, people: str or list[str]):
-        query = self.queries.select_people.format(",".join(["LOWER(%s)"] * len(people)))
+        query = self.queries.select_people.format(",".join(["LOWER (%s)"] * len(people)))
 
         if isinstance(people, str):
             values = [people]
