@@ -1,6 +1,3 @@
-""" implement testing framework for database """
-
-
 class Test:
     def __init__(self):
         self.failed = False
@@ -31,13 +28,13 @@ class Test:
             raise Exception("Missing Certain Environment Variables")
         return True
 
-
 class DatabaseTest(Test):
     def __init__(self):
         from Database import Database
 
         self.database = Database()
         self.uid_to_delete = ""
+        self.failed = False
 
     def add_test(self):
         from Person import Person
@@ -89,6 +86,7 @@ class SQLTest(Test):
         from database.pgQueries import pgQueries
 
         self.queries = pgQueries()
+        self.failed = False
 
     def check_queries_exist(self):
         try:
@@ -144,10 +142,33 @@ class SQLTest(Test):
             self.failed *= 1
 
 
+class EmailTest(Test):
+    def __init__(self):
+        self.failed = False
+
+    def email_self(self):
+        from Email import Email
+
+        try:
+            e = Email(
+                "[TEST] This is a Test",
+                "[TEST] This is a Test",
+                ["acmbyte.ccny@gmail.com"],
+            )
+            e.email()
+        except Exception as e:
+            print("Email Self Test Failed: \n", e)
+            self.failed *= 1
+
+
 if __name__ == "__main__":
     pgTest = SQLTest()
     dbTest = DatabaseTest()
+    eTest = EmailTest()
 
+    eTest.email_self()
+
+    pgTest.load_environment()
     pgTest.check_queries_exist()
 
     dbTest.load_environment()
@@ -155,7 +176,7 @@ if __name__ == "__main__":
     dbTest.get_test()
     dbTest.delete_test()
 
-    if dbTest.failed or pgTest.failed:
+    if pgTest.failed or dbTest.failed or eTest.failed:
         print("Tests Failed")
         exit(1)
     print("Tests Passed!")
