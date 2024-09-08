@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
         prog="BYTE Email Client",
-        description="Emails clients using database of current and previous BYTE applicants. Takes body from body.html. Defaults to emailing all in database regardless of active member. Blacklisted folks are ignored by default, unless specified otherwise",
+        description="Emails clients using database of current and previous BYTE applicants.\nTakes body from body.html.\nDefaults to emailing all in database regardless of active member. Blacklisted folks are ignored by default, unless specified otherwise",
     )
 
     parser.add_argument(
@@ -36,9 +36,11 @@ if __name__ == "__main__":
         "--specific",
         type=str,
         nargs="+",
-        help="email specifically these people, last argument is the subject",
+        help="email specifically these people, last argument is the subject of the email",
     )
-    parser.add_argument("-g", "--get-person", type=str, help="get person by first name")
+    parser.add_argument(
+        "-g", "--get-person", type=str, nargs="+", help="get person by first name"
+    )
     parser.add_argument(
         "-b", "--add-blacklist", nargs="+", help="add person to blacklist by uid"
     )
@@ -76,11 +78,10 @@ if __name__ == "__main__":
     if args.mark_inactive:
         d.mark_inactive(args.mark_inactive)
         exit(0)
-    
+
     if args.mark_active:
         d.mark_active(args.mark_active)
         exit(0)
-
 
     if args.mark_all_inactive:
         from database.pgQueries import pgQueries
