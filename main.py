@@ -96,8 +96,8 @@ if __name__ == "__main__":
 
     if args.active:
         e = Email(html_string, args.active, d.get_active())
-        # e.email()
+        e.email()
 
     if args.all:
         e = Email(html_string, args.all, d.get_all())
-        # e.email()
+        e.email()
