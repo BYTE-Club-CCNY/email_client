@@ -14,9 +14,9 @@
 - [x] Fix cascade of deletes and updates. Requires implementation of foreign keys for cabinet and blacklist tables
 - [ ] add project to the byte ccny website project db
 - [ ] expand current db to fall 2024 applicants
-- [ ] expand cli to disable all active users (excluding cabinet)
-- [ ] expand cli to disable specific users
-- [ ] expand cli to enable specific users
+- [x] expand cli to disable all active users (excluding cabinet)
+- [x] expand cli to disable specific users
+- [x] expand cli to enable specific users
 
 ## Jawad
 - [x] test the delete operation (why is it not working)

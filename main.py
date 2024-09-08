@@ -57,8 +57,37 @@ if __name__ == "__main__":
     parser.add_argument(
         "-rc", "--remove-cabinet", type=str, nargs="+", help="remove uid from cabinet"
     )
+    parser.add_argument(
+        "-mia",
+        "--mark-all-inactive",
+        action="store_true",
+        help="mark everyone non cabinet as inactive (for end of semester/cohort)",
+    )
+    parser.add_argument(
+        "-mi",
+        "--mark-inactive",
+        type=str,
+        nargs="+",
+        help="mark following uids as inactive",
+    )
 
     args = parser.parse_args()
+
+    if args.mark_inactive:
+        d.mark_inactive(args.mark_inactive)
+        exit(0)
+    
+    if args.mark_active:
+        d.mark_active(args.mark_active)
+        exit(0)
+
+
+    if args.mark_all_inactive:
+        from database.pgQueries import pgQueries
+
+        q = pgQueries()
+        d.execute_query(q.mark_all_inactive, [])
+        exit(0)
 
     if args.specific:
         e = Email(html_string, args.specific[0:-1], args.specific[-1])

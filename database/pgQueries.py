@@ -43,7 +43,7 @@ class pgQueries:
 
         self.mark_inactive = """ UPDATE people SET active = false WHERE uid in (%s) """
         self.mark_active = """ UPDATE people SET active = true WHERE uid in (%s) """
-
+        self.mark_all_inactive = """ UPDATE people SET active = false WHERE uid not in (SELECT uid from cabinet); """
         self.add_blacklist = """ INSERT INTO blacklist (uid) VALUES (%s) """
         self.add_cabinet = """ INSERT INTO cabinet (uid) VALUES (%s) """
         self.add_person = """ INSERT INTO people (first_name, middle_name, last_name, 

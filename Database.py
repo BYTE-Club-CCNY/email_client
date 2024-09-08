@@ -213,3 +213,31 @@ class Database:
             return None
 
         return None
+
+    def mark_inactive(self, uid: str or list[str]):
+        query = self.queries.mark_inactive
+        values = uid
+
+        if isinstance(uid, str):
+            values = [uid]
+
+        try:
+            res = self.execute_query(query, values)
+            return res
+        except Exception as e:
+            print("Exception occured:", e)
+            return None
+
+    def mark_active(self, uid: str or list[str]):
+        query = self.queries.mark_active
+        values = uid
+
+        if isinstance(uid, str):
+            values = [uid]
+
+        try:
+            res = self.execute_query(query, values)
+            return res
+        except Exception as e:
+            print("Exception occured:", e)
+            return None
