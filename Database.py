@@ -59,8 +59,8 @@ class Database:
 
     def remove(self, uids: list[str] or str):
         query = self.queries.delete_person
-
         people = uids
+
         if not isinstance(uids, list):
             people = [uids]
         try:
@@ -70,7 +70,7 @@ class Database:
             return e
 
     def get_person_by_name(self, people: str or list[str]):
-        query = self.queries.select_people
+        query = self.queries.select_people.format(",".join(["LOWER(%s)"] * len(people)))
 
         if isinstance(people, str):
             values = [people]
