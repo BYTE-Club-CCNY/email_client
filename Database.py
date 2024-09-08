@@ -60,6 +60,7 @@ class Database:
     def remove(self, uids: list[str] or str):
         query = self.queries.delete_person
 
+        people = uids
         if not isinstance(uids, list):
             people = [uids]
         try:
@@ -197,9 +198,12 @@ class Database:
             print("Exception occured:", e)
             return None
 
-    def add_blacklist(self, uid: str):
+    def add_blacklist(self, uid: str or list[str]):
         query = self.queries.add_blacklist
         values = uid
+
+        if isinstance(uid, str):
+            values = [uid]
 
         try:
             res = self.execute_query(query, values)

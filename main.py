@@ -39,7 +39,9 @@ if __name__ == "__main__":
         help="email specifically these people, last argument is the subject",
     )
     parser.add_argument("-g", "--get-person", type=str, help="get person by first name")
-    parser.add_argument("-b", "--add-blacklist", help="add person to blacklist by uid")
+    parser.add_argument(
+        "-b", "--add-blacklist", nargs="+", help="add person to blacklist by uid"
+    )
     parser.add_argument(
         "-add",
         "--add-person",
@@ -49,9 +51,11 @@ if __name__ == "__main__":
     parser.add_argument(
         "-r", "--remove-person", type=str, nargs="+", help="remove people from database"
     )
-    parser.add_argument("-ac", "--add-cabinet", type=str, help="add uid to cabinet")
     parser.add_argument(
-        "-rc", "--remove-cabinet", type=str, help="remove uid from cabinet"
+        "-ac", "--add-cabinet", type=str, nargs="+", help="add uid to cabinet"
+    )
+    parser.add_argument(
+        "-rc", "--remove-cabinet", type=str, nargs="+", help="remove uid from cabinet"
     )
 
     args = parser.parse_args()
@@ -81,11 +85,11 @@ if __name__ == "__main__":
         d.del_cabinet(args.remove_cabinet)
         exit(0)
 
-    if args.add_blacklist is not None:
+    if args.add_blacklist:
         d.add_blacklist(args.add_blacklist)
         exit(0)
 
-    if args.get_person is not None:
+    if args.get_person:
         res = d.get_person_by_name(args.get_person)
         print(res)
         exit(0)
