@@ -57,11 +57,11 @@ class Database:
         ]
         return self.execute_query(query, values, True)
 
-    def remove(self, people: list[str] or str):
+    def remove(self, uids: list[str] or str):
         query = self.queries.delete_person
 
-        if not isinstance(people, list):
-            people = [people]
+        if not isinstance(uids, list):
+            people = [uids]
         try:
             self.execute_query(query, people)
             return True

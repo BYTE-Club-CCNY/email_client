@@ -46,6 +46,9 @@ if __name__ == "__main__":
         action="store_true",
         help="start CLI to add person into database",
     )
+    parser.add_argument(
+        "-r", "--remove-person", type=str, nargs="+", help="remove people from database"
+    )
     parser.add_argument("-ac", "--add-cabinet", type=str, help="add uid to cabinet")
     parser.add_argument(
         "-rc", "--remove-cabinet", type=str, help="remove uid from cabinet"
@@ -62,6 +65,12 @@ if __name__ == "__main__":
 
         ad = Person()
         ad.add_person()
+        exit(0)
+
+    if args.remove_person:
+        d = Database()
+
+        d.remove(args.remove_person)
         exit(0)
 
     if args.add_cabinet:
