@@ -36,7 +36,7 @@ class pgQueries:
                                         WHEN preferred_email = true THEN personal_email 
                                         ELSE cuny_email 
                                     END AS email
-                                FROM people where active = 1 """
+                                FROM people where active = true """
 
         self.remove_cabinet = """DELETE FROM cabinet WHERE uid in (%s)"""
         self.delete_person = """ DELETE FROM people WHERE uid in (%s) """
