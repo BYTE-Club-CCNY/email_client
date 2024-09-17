@@ -20,6 +20,8 @@
 - [ ] pretty print the `-get` flag results (so all fields have an obvious tag)
 - [ ] set the MIME to in isolation 
 - [ ] hardcode BYTE email to always recieve the emails that are sent out
+- [ ] should be able to edit user
+	- [ ] when editing user, u can simply select which field to edit via arrow keys
 
 ## Jawad
 - [x] test the delete operation (why is it not working)
