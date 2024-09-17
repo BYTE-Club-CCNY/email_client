@@ -18,6 +18,8 @@
 - [x] expand cli to disable specific users
 - [x] expand cli to enable specific users
 - [ ] pretty print the `-get` flag results (so all fields have an obvious tag)
+- [ ] set the MIME to in isolation 
+- [ ] hardcode BYTE email to always recieve the emails that are sent out
 
 ## Jawad
 - [x] test the delete operation (why is it not working)

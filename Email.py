@@ -22,7 +22,9 @@ class Email:
         self.message = MIMEMultipart("alternative")
         self.message["Subject"] = subject
         self.message["From"] = username
-        self.message["To"] = ", ".join(to)
+        self.message["To"] = ", ".join(
+            to
+        )  # should send to BYTE account and in isolation!
         self.message["Cc"] = ", ".join(cc) if cc else ""
         self.message.attach(MIMEText(message, "plain"))
         self.message.attach(MIMEText(message, "html"))
@@ -60,4 +62,3 @@ class Email:
             except smtplib.SMTPSenderRefused as e:
                 print("Server did not accept one of the 'to' addresses", e)
                 exit(1)
-
