@@ -22,7 +22,8 @@
 - [ ] hardcode BYTE email to always recieve the emails that are sent out
 - [ ] should be able to edit user
 	- [ ] when editing user, u can simply select which field to edit via arrow keys
-
+- [ ] ensure hrefs work in future emails
+- [ ] setup email for future candidates assuming we drop any members in cohort
 ## Jawad
 - [x] test the delete operation (why is it not working)
 - [x] add current alumni to db
