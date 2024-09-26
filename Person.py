@@ -44,7 +44,7 @@ class Person:
                 self.last_name = full_name[-1]
 
                 middle_name = " ".join(full_name[1:-1])
-                self.middle_name = middle_name if middle_name != " " else None
+                self.middle_name = middle_name if middle_name != "" else None
 
             self.school_email = Input("School Email*: ", str).val
             self.personal_email = Input(
