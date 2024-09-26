@@ -13,9 +13,8 @@ class Email:
 
         load_dotenv()
 
-        username = os.getenv("USERNAME")
-        password = os.getenv("PASSWORD")
-
+        username = os.getenv("EM_USERNAME")    #note for jawad in the future, this should be edited to EM_USERNAME, due to a path variable named username existing.
+        password = os.getenv("EM_PASSWORD")
         if not username or not password:
             raise Exception("missing environment variables USERNAME or PASSWORD")
 
