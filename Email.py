@@ -47,6 +47,7 @@ class Email:
                 server.login(self.username, self.password)
 
                 for to in self.to:
+                    self.message["To"] = to
                     server.sendmail(self.username, to, self.message.as_string())
 
                 server.quit()
