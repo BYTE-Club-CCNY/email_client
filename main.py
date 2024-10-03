@@ -81,7 +81,18 @@ if __name__ == "__main__":
         help="mark following uids as active",
     )
 
+    parser.add_argument("-t", "--test", action="store_true", help="will email Fahad")
+
     args = parser.parse_args()
+
+    if args.test:
+        e = Email(
+            html_string,
+            "TESTING",
+            ["fahadfaruqi1@gmail.com", "fahad.faruqi.ff@gmail.com"],
+        )
+        e.email()
+        exit(0)
 
     if args.mark_inactive:
         d.mark_inactive(args.mark_inactive)
