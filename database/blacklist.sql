@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS blacklist;
-
-CREATE TABLE blacklist(
+CREATE TABLE IF NOT EXISTS blacklist(
     uid UUID REFERENCES people (uid) ON DELETE CASCADE
-)
+);
