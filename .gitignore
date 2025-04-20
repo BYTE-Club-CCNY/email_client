@@ -3,9 +3,10 @@ data/
 .vscode
 .git
 .env
-B.Y.T.E Club Form (Responses).xlsx
+*.xlsx
 firebase.json
 env/
 __pycache__/
 body.html
 add_cabinet.py
+*.csv

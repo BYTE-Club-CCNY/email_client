@@ -8,9 +8,21 @@ import pandas as pd
 
 
 #pandas stuff
-df= pd.read_csv("<csv file here>")
-emails= df[df['Final verdict']=='Accepted']['Email Address'].tolist()
+#df= pd.read_csv("your.csv")
+
+#emails= df[df['Final verdict']=='Accepted']['Email Address'].tolist()
 #emails=df['Final verdict'].unique() #debug
+
+
+'''
+or if you have a list of emails you wanna just send to, 
+comment all the dataframe stuff above and uncomment this below
+then add any emails you want to send to in the list below
+'''
+emails = []
+
+
+
 emails.append("acmbyte.ccny@gmail.com") #include self
 #print(emails) #debug
 
@@ -28,7 +40,7 @@ with open("body.html", "r") as file: #make sure body.html in root. double check 
     email_body = file.read()
 
 #email structure
-subject = "Welcome to Byte!"
+subject = "BYTE x Google AI Labs Update"
 recipients = emails
 
 with SMTP_SSL(mailserver, serverPort) as server:
